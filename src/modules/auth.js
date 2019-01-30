@@ -1,9 +1,9 @@
-import Cookies from 'js-cookie';
+import Cookies from "js-cookie";
 
-export const AUTHENTICATE = 'auth/AUTHENTICATE';
-export const SET_CURRENT_USER = 'auth/SET_CURRENT_USER';
+export const AUTHENTICATE = "auth/AUTHENTICATE";
+export const SET_CURRENT_USER = "auth/SET_CURRENT_USER";
 
-const initialState = {
+export const initialState = {
   isAuthenticated: false,
   currentUser: {}
 };
@@ -34,7 +34,7 @@ export const setCurrentUser = user => dispatch =>
       user
     });
 
-    Cookies.set('mywebsite', user);
+    Cookies.set("mywebsite", user);
 
     dispatch({
       type: AUTHENTICATE,
@@ -46,7 +46,7 @@ export const setCurrentUser = user => dispatch =>
 
 export const establishCurrentUser = () => dispatch =>
   new Promise(resolve => {
-    let userFromCookie = Cookies.getJSON('mywebsite');
+    let userFromCookie = Cookies.getJSON("mywebsite");
 
     if (userFromCookie) {
       dispatch(setCurrentUser(userFromCookie));
@@ -61,7 +61,7 @@ export const loginUser = (email, password) => dispatch =>
     const user = {
       email,
       password,
-      name: 'Awesome User'
+      name: "Awesome User"
     };
 
     dispatch(setCurrentUser(user));
@@ -80,6 +80,6 @@ export const logoutUser = () => dispatch =>
       user: {}
     });
 
-    Cookies.remove('mywebsite');
+    Cookies.remove("mywebsite");
     resolve({});
   });

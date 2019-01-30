@@ -1,7 +1,12 @@
-import { combineReducers } from 'redux';
+import { combineReducers } from "redux";
 
-import auth from './auth';
-import profile from './profile';
+import auth, { initialState as authState } from "./auth";
+import profile, { initialState as profileState } from "./profile";
+
+export const initialState = {
+  auth: authState,
+  profile: profileState
+};
 
 export default combineReducers({
   auth,
